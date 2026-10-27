@@ -27,7 +27,7 @@ pasta=$(mktemp -d)
 trap 'rm -rf "$pasta"' EXIT
 senha=$(openssl rand -hex 16)
 openssl req -x509 -newkey rsa:2048 -nodes -days 10000 \
-    -subj "/CN=${repositorio}/O=Eletiva IAPE" \
+    -subj "/CN=${repositorio//\//-}/O=Eletiva IAPE" \
     -keyout "$pasta/chave.pem" -out "$pasta/certificado.pem" 2>/dev/null
 openssl pkcs12 -export -name jogo -inkey "$pasta/chave.pem" -in "$pasta/certificado.pem" \
     -out "$pasta/chave.p12" -passout "pass:$senha"
