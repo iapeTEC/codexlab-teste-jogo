@@ -92,6 +92,8 @@ abrir_app() {
     adb shell monkey -p "$PACOTE" -c android.intent.category.LAUNCHER 1 >/dev/null
 }
 
+# Logo depois do boot a memória compartilhada ainda pode não estar montada.
+for _ in $(seq 60); do adb shell test -d /sdcard/Download && break; sleep 2; done
 adb shell mkdir -p /sdcard/Documents
 adb shell rm -f "$ARQUIVO"
 adb install -r "$APK"
