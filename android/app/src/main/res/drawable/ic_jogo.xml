@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Controle de videogame branco, centralizado na área segura do ícone adaptativo (108dp). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M38,40h32a14,14 0,0 1,14 14v6a12,12 0,0 1,-21 8l-4,-4h-10l-4,4a12,12 0,0 1,-21 -8v-6a14,14 0,0 1,14 -14z" />
+    <path
+        android:fillColor="#33000000"
+        android:pathData="M40,48h4v6h6v4h-6v6h-4v-6h-6v-4h6z" />
+    <path
+        android:fillColor="#33000000"
+        android:pathData="M68,52m-3.5,0a3.5,3.5 0,1 1,7 0a3.5,3.5 0,1 1,-7 0" />
+    <path
+        android:fillColor="#33000000"
+        android:pathData="M76,60m-3.5,0a3.5,3.5 0,1 1,7 0a3.5,3.5 0,1 1,-7 0" />
+</vector>

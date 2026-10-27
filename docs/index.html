@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baixar o jogo</title>
+  <link rel="icon" href="jogo/icone-192.png">
+  <link rel="stylesheet" href="download.css">
+  <script src="jogo/config.js"></script>
+  <script src="jogo/placar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"
+    integrity="sha384-mZT2gIty7ZDdOGkxfP6joZcYdMW1Jvj9dRlfpTmaJAKKXTqzygtB22k7FLe+KZC1"
+    crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="download.js" defer></script>
+</head>
+<body>
+  <main class="pagina">
+    <header class="cartaz">
+      <p class="emoji" id="emoji" aria-hidden="true">🎮</p>
+      <h1 id="nome">Jogo</h1>
+      <p id="descricao"></p>
+      <div class="acoes">
+        <a id="baixar" class="botao" href="#">Baixar para Android (APK)</a>
+        <a class="botao botao-claro" href="jogo/">Jogar no navegador</a>
+      </div>
+      <p id="versao" class="miudo" aria-live="polite"></p>
+    </header>
+
+    <section class="bloco" aria-labelledby="titulo-instalar">
+      <h2 id="titulo-instalar">Como instalar no celular</h2>
+      <ol>
+        <li>No celular Android, toque em <strong>Baixar para Android (APK)</strong>.</li>
+        <li>Abra o arquivo <strong>jogo.apk</strong> baixado. Se o celular pedir, permita que o navegador instale apps desconhecidos.</li>
+        <li>Toque em <strong>Instalar</strong>. Se aparecer o aviso do Play Protect, toque em <strong>Mais detalhes › Instalar mesmo assim</strong>.</li>
+      </ol>
+      <p class="miudo">Não conseguiu instalar? Toque em <strong>Jogar no navegador</strong> e, no menu do Chrome, escolha <strong>Adicionar à tela inicial</strong>. O jogo vira um ícone, igual a um aplicativo.</p>
+    </section>
+
+    <section class="bloco bloco-qr" id="bloco-qr" hidden aria-labelledby="titulo-qr">
+      <h2 id="titulo-qr">Abrir esta página no celular</h2>
+      <img id="qr" alt="QR code com o endereço desta página" width="200" height="200">
+      <p class="miudo" id="endereco"></p>
+    </section>
+
+    <section class="bloco" id="bloco-ranking" hidden aria-labelledby="titulo-ranking">
+      <h2 id="titulo-ranking">Ranking ao vivo</h2>
+      <ol id="ranking" class="ranking"></ol>
+      <p class="miudo">Pontuações guardadas na Planilha Google do jogo, pelo Apps Script.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2F6FDB">
+  <title>Jogo</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icone-192.png">
+  <link rel="apple-touch-icon" href="icone-192.png">
+  <link rel="stylesheet" href="placar.css">
+  <link rel="stylesheet" href="estilo.css">
+  <!-- Nesta ordem: configuração, placar, painel do placar, regras e o jogo. -->
+  <script src="config.js"></script>
+  <script src="placar.js"></script>
+  <script src="placar-ui.js"></script>
+  <script src="regras.js"></script>
+  <script src="pwa.js" defer></script>
+  <script src="jogo.js" defer></script>
+</head>
+<body>
+  <main class="jogo">
+    <header class="topo">
+      <h1 id="titulo">Jogo</h1>
+      <p>Seu recorde: <strong id="melhor">0</strong></p>
+    </header>
+
+    <section id="tela-inicio" class="tela" aria-labelledby="titulo">
+      <p class="instrucao">Toque no botão o máximo de vezes que conseguir em 10 segundos.</p>
+      <button id="botao-jogar" class="botao" type="button">Jogar</button>
+    </section>
+
+    <section id="tela-jogo" class="tela" hidden aria-label="Partida">
+      <p class="placar-ao-vivo"><span id="tempo">10.0</span> s · <span id="toques">0</span> toques</p>
+      <button id="botao-toque" class="botao botao-grande" type="button">Toque!</button>
+    </section>
+
+    <section id="tela-fim" class="tela" hidden aria-label="Fim da partida">
+      <p class="instrucao">Você fez <strong id="resultado">0</strong> pontos.</p>
+      <p id="situacao-salvamento" role="status" aria-live="polite"></p>
+      <button id="botao-de-novo" class="botao" type="button">Jogar de novo</button>
+    </section>
+
+    <aside id="painel-placar" aria-label="Placar"></aside>
+  </main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+:root {
+  --cor: #2f6fdb;
+  --tinta: #14213d;
+  --fundo: #f7f5ef;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: var(--cor);
+  color: var(--tinta);
+  font: 18px/1.45 system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+.jogo {
+  width: min(560px, 100%);
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+.topo, .tela {
+  background: var(--fundo);
+  border-radius: 18px;
+  padding: 16px 18px;
+}
+.topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.topo h1 { margin: 0; font-size: 1.5rem; }
+.topo p { margin: 0; }
+.tela { display: grid; gap: 14px; justify-items: center; text-align: center; }
+.instrucao { margin: 0; }
+.placar-ao-vivo { margin: 0; font-size: 1.4rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.botao {
+  min-height: 52px;
+  min-width: 180px;
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--tinta);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.botao:focus-visible { outline: 4px solid #f2b544; outline-offset: 3px; }
+.botao-grande {
+  width: min(280px, 80vw);
+  height: min(280px, 80vw);
+  border-radius: 50%;
+  font-size: 2rem;
+  user-select: none;
+}
+.botao-grande:active { transform: scale(0.96); }

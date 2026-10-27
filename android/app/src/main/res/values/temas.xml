@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TemaDoJogo" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/cor_jogo</item>
+        <item name="android:colorAccent">@color/cor_jogo</item>
+        <item name="android:statusBarColor">@color/cor_jogo</item>
+        <item name="android:windowBackground">@color/cor_jogo</item>
+    </style>
+</resources>

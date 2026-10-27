@@ -1,0 +1,43 @@
+/* Estilo do painel do placar (placar-ui.js). Pode mudar as cores à vontade. */
+.placar {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #14213d;
+  font: 16px/1.4 system-ui, sans-serif;
+}
+.placar-titulo { margin: 8px 0 0; font-size: 1.1rem; }
+.placar-resumo { margin: 0; font-weight: 700; }
+.placar-nota { margin: 0; color: #45506a; font-size: 0.92rem; }
+.placar-mensagem { margin: 0; min-height: 1.2em; color: #166534; font-weight: 600; }
+.placar-mensagem.placar-erro { color: #9a3412; }
+.placar-formulario { display: grid; gap: 8px; }
+.placar-campo {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 2px solid #c9cfdb;
+  border-radius: 10px;
+  font: inherit;
+}
+.placar-botao {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #14213d;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.placar-botao:disabled { opacity: 0.6; cursor: progress; }
+.placar-secundario { background: #e6e9f0; color: #14213d; }
+.placar-botao:focus-visible, .placar-campo:focus-visible { outline: 3px solid #f2b544; outline-offset: 2px; }
+.placar-lista { margin: 0; padding-left: 1.6em; display: grid; gap: 4px; }
+.placar-lista li { padding: 4px 0; border-bottom: 1px solid #e6e9f0; }
+.placar-lista li > span { display: inline-flex; }
+.placar-nome { min-width: 8em; }
+.placar-pontos { float: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+.placar-vazio { list-style: none; margin-left: -1.6em; color: #45506a; }

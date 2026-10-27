@@ -1,0 +1,67 @@
+# Compila o APK a cada push na main e publica numa Release do GitHub.
+# A página de download (docs/index.html) sempre aponta para a Release mais nova:
+#   https://github.com/DONO/REPOSITORIO/releases/latest/download/jogo.apk
+name: APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Conferir config.js e rodar os testes
+        run: |
+          node scripts/preparar.mjs
+          node --test tests/*.test.mjs
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+
+      - name: Preparar a chave de assinatura
+        env:
+          CHAVE: ${{ secrets.ANDROID_CHAVE_BASE64 }}
+        run: |
+          if [ -n "$CHAVE" ]; then
+            printf '%s' "$CHAVE" | base64 -d > "$RUNNER_TEMP/chave.p12"
+            echo "ANDROID_CHAVE_ARQUIVO=$RUNNER_TEMP/chave.p12" >> "$GITHUB_ENV"
+          else
+            echo "::warning::Sem o secret ANDROID_CHAVE_BASE64 (rode bash scripts/criar-chave.sh). O APK sai com chave temporária: para atualizar, será preciso desinstalar a versão anterior."
+          fi
+
+      - name: Compilar o APK
+        env:
+          ANDROID_CHAVE_SENHA: ${{ secrets.ANDROID_CHAVE_SENHA }}
+          VERSAO: ${{ github.run_number }}
+        run: |
+          cd android
+          bash gradlew --no-daemon assembleRelease
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/jogo.apk"
+
+      - name: Publicar a Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ github.run_number }}" jogo.apk \
+            --title "Versão ${{ github.run_number }}" \
+            --notes "APK gerado automaticamente a partir do commit ${GITHUB_SHA::7}." \
+            --latest

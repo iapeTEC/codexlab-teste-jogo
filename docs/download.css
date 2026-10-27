@@ -1,0 +1,28 @@
+:root { --cor: #2f6fdb; --tinta: #14213d; --papel: #f7f5ef; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--cor);
+  color: var(--tinta);
+  font: 18px/1.5 system-ui, sans-serif;
+}
+.pagina { width: min(720px, 100%); margin: 0 auto; padding: 24px 16px 48px; display: grid; gap: 16px; }
+.cartaz, .bloco { background: var(--papel); border-radius: 20px; padding: 24px; }
+.cartaz { text-align: center; }
+.emoji { font-size: 4rem; margin: 0; line-height: 1; }
+h1 { margin: 8px 0 4px; font-size: clamp(1.8rem, 6vw, 2.6rem); }
+h2 { margin: 0 0 12px; font-size: 1.25rem; }
+.acoes { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 18px 0 8px; }
+.botao {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 10px 22px; border-radius: 14px;
+  background: var(--tinta); color: #fff; font-weight: 800; text-decoration: none;
+}
+.botao-claro { background: #e6e9f0; color: var(--tinta); }
+.botao:focus-visible { outline: 4px solid #f2b544; outline-offset: 3px; }
+.botao.desligado { opacity: 0.5; pointer-events: none; }
+.miudo { color: #45506a; font-size: 0.92rem; margin: 8px 0 0; overflow-wrap: anywhere; }
+ol { padding-left: 1.4em; margin: 0; display: grid; gap: 8px; }
+.bloco-qr { text-align: center; }
+.bloco-qr img { image-rendering: pixelated; width: 200px; height: 200px; }
+.ranking li { display: flex; justify-content: space-between; border-bottom: 1px solid #e2ddcf; padding: 4px 0; }

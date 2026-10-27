@@ -1,0 +1,15 @@
+# Compilação do Android (o GitHub Actions faz isso)
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.apk
+
+# Chaves de assinatura NUNCA vão para o repositório
+*.p12
+*.pem
+*.jks
+*.keystore
+
+node_modules/
+.DS_Store
