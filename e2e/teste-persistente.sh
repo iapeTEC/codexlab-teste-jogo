@@ -143,6 +143,7 @@ esperar_texto "Melhor: $pontos" 10
 adb exec-out screencap -p > e2e/saida/recuperado.png
 
 echo "== 7. sem erros de JavaScript"
-adb logcat -d | grep -iE "Uncaught|chromium.*CONSOLE.*error" | tee e2e/saida/erros-js.txt || true
+# Só o console da WebView (tag chromium); o resto do log é do próprio Android.
+adb logcat -d -s chromium:V | grep -iE "CONSOLE.*(Uncaught|Error)" | tee e2e/saida/erros-js.txt || true
 test ! -s e2e/saida/erros-js.txt
 echo "TUDO CERTO: progresso de $pontos pontos sobreviveu à desinstalação."
