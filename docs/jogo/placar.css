@@ -1,4 +1,8 @@
 /* Estilo do painel do placar (placar-ui.js). Pode mudar as cores à vontade. */
+
+/* Garante que hidden esconda mesmo quando o CSS do jogo põe display: grid/flex na tela. */
+[hidden] { display: none !important; }
+
 .placar {
   display: grid;
   gap: 10px;

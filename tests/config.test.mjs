@@ -26,4 +26,5 @@ test('o jogo funciona dentro do APK: caminhos relativos e placar carregado', () 
   for (const script of ['config.js', 'placar.js', 'placar-ui.js']) {
     assert.ok(index.includes('src="' + script + '"'), 'index.html precisa carregar ' + script);
   }
+  assert.ok(index.includes('href="placar.css"'), 'index.html precisa carregar placar.css');
 });

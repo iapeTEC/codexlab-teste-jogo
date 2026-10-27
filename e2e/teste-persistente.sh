@@ -18,7 +18,10 @@ tem_texto() {
     python3 - "$1" <<'EOF'
 import re, sys, xml.etree.ElementTree as ET
 alvo = sys.argv[1].lower()
-raiz = ET.parse('e2e/saida/ui.xml').getroot()
+try:
+    raiz = ET.parse('e2e/saida/ui.xml').getroot()
+except (OSError, ET.ParseError):
+    sys.exit(1)
 textos = [(n.get('text') or '') + ' ' + (n.get('content-desc') or '') for n in raiz.iter('node')]
 sys.exit(0 if any(alvo in t.lower() for t in textos) else 1)
 EOF
@@ -29,8 +32,13 @@ centro_de() {
     python3 - "$1" <<'EOF'
 import re, sys, xml.etree.ElementTree as ET
 alvo = sys.argv[1].lower()
-raiz = ET.parse('e2e/saida/ui.xml').getroot()
-nos = list(raiz.iter('node'))
+try:
+    raiz = ET.parse('e2e/saida/ui.xml').getroot()
+except (OSError, ET.ParseError):
+    sys.exit(1)
+# Só o que está visível na tela (fora da tela o Android informa tamanho zero).
+nos = [n for n in raiz.iter('node')
+       if (lambda a, b, c, d: c > a and d > b)(*map(int, re.findall(r'\d+', n.get('bounds') or '[0,0][0,0]')))]
 def texto(n):
     return ((n.get('text') or '') + ' ' + (n.get('content-desc') or '')).strip().lower()
 # Primeiro o texto exato (botão "Allow"), só depois o que começa igual (título "Allow ... ?").
@@ -58,12 +66,14 @@ esperar_texto() {
 
 tocar() {
     local alvo=$1 limite=${2:-30} posicao=""
-    for _ in $(seq "$limite"); do
+    for tentativa in $(seq "$limite"); do
         if posicao=$(centro_de "$alvo"); then
             # shellcheck disable=SC2086
             adb shell input tap $posicao
             return 0
         fi
+        # A cada 3 tentativas, rola a tela para baixo: o botão pode estar fora da vista.
+        if [ $((tentativa % 3)) -eq 0 ]; then adb shell input swipe 160 500 160 200 300; fi
         sleep 1
     done
     echo "FALHOU: não achei para tocar: $alvo" >&2
